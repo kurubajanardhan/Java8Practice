@@ -19,10 +19,12 @@ public class DayWithHighestTotalSpend {
 				new Transaction("T5", LocalDate.of(2024, 1, 3), 100)
 				);
 		
-		Map<LocalDate, Double> collect = transactions.stream().collect(Collectors.groupingBy(
+		Map<LocalDate, Double> collect = transactions.stream()
+				.collect(Collectors.groupingBy(
 				Transaction::getDate,
 				Collectors.summingDouble(Transaction::getAmount)
 				));
+		System.out.println(collect);
 		
 		Entry<LocalDate, Double> result = collect.entrySet().stream()
 				.max(Map.Entry.comparingByValue()).orElseThrow();
